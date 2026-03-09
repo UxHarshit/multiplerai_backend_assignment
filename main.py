@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth, students
+from app.routes import auth, screenshot, students
 from app.database import connect_db, close_db
 from contextlib import asynccontextmanager
 
@@ -26,6 +26,7 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(students.router, prefix="/students", tags=["Students"])
+app.include_router(screenshot.router, prefix="/screenshot", tags=["Screenshot"])
 
 @app.get("/")
 async def root():
